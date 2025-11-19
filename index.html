@@ -8,11 +8,38 @@
 		<link rel="stylesheet" crossorigin href="./assets/index-TZrNw7dA.css">
 	</head>
 	<body>
-		<script src="https://telegram.org/js/telegram-web-app.js?59"></script>
-		<script>
-			const app = window.Telegram.WebApp;
-			app.requestFullscreen();
-			app.disableVerticalSwipes();
-		</script>
+		<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const app = Telegram.WebApp;
+
+    // Telegram WebApp готовий
+    app.ready();
+
+    // Розгорнути на максимум
+    app.expand();
+
+    // Запит на fullscreen (не всюди доступно)
+    try {
+        app.requestFullscreen();
+    } catch (e) {
+        console.log("Fullscreen not supported:", e);
+    }
+
+    // Вимкнути вертикальні свайпи (Bot API 7.7+)
+    try {
+        app.disableVerticalSwipes();
+        console.log("Vertical swipes disabled");
+    } catch (e) {
+        console.log("disableVerticalSwipes() not supported:", e);
+    }
+
+    // Debug info
+    console.log("Platform:", app.platform);
+    console.log("Version:", app.version);
+    console.log("isVerticalSwipesEnabled:", app.isVerticalSwipesEnabled);
+});
+</script>
 	</body>
 </html>
